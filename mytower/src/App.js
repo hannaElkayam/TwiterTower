@@ -11,16 +11,20 @@ function App() {
     event.preventDefault();
     const height = parseInt(event.target.height.value);
     const width = parseInt(event.target.width.value);
+    const action = parseInt(event.target.action.value);
     const perimeter = height + width + Math.sqrt(height * 2 + width * 2);
     const rows = [];
     let glo=3;
-    let num=(width-3)/2;
-    let t=(height/num)-1;
+    let num=(width)/2;
+    let t=((height-2)/num);
     let sher=(height-(num*t))-2;
+    
     if((width > (2*height))||((width%2)===0)){
       alert("The triangle cannot be printed")
     }
     else{
+      if(width>3){
+
       rows.push("*");
       for(let x=0;x<sher;x++){
         rows.push("*".repeat(glo));
@@ -31,10 +35,24 @@ function App() {
           rows.push("*".repeat(glo));
       } 
       glo= glo+2;
-    }
+      }
+       }
+       else{
+           rows.push("*");
+           for(let x=2; x<height; x++){
+            rows.push("*".repeat(width));
+           }
+
+       }
+  
     rows.push("*".repeat(width));
-    console.log("Perimeter: ", perimeter);
-    console.log(rows.join("\n"));
+    if(action===1){
+      console.log("Perimeter: ", perimeter);
+    }
+    if(action===2){
+      console.log(rows.join("\n"));
+    }
+    
     setTimeout(() => setOption(""), 2000);
   }
   };
@@ -44,12 +62,12 @@ function App() {
     const height = parseInt(event.target.height.value);
     const width = parseInt(event.target.width.value);
     const area = height * width;
-    if(Math.abs(width-height)>5){
+    if((Math.abs(width-height)>5)||(width===height)){
       console.log("Area: ", area);
       setTimeout(() => setOption(""), 2000);
     }
     else{
-      console.log("Perimeter: ", (2*width*height));
+      console.log("Perimeter: ", (2*(width+height)));
       setTimeout(() => setOption(""), 2000);
     }
     
@@ -81,6 +99,10 @@ function App() {
             Width:
             <input type="number" name="width" />
           </label>
+          <label>
+            action:
+          <input type="number" name="action" min={1} max={2}/>
+          </label>
           <button type="submit">Calculate</button>
         </form>
       )}
@@ -94,6 +116,8 @@ function App() {
             Width:
             <input type="number" name="width" />
           </label>
+          
+      
           <button type="submit">Calculate</button>
         </form>
       )}
