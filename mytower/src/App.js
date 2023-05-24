@@ -15,37 +15,50 @@ function App() {
     const perimeter = height + width + Math.sqrt(height * 2 + width * 2);
     const rows = [];
     let glo=3;
-    let num=(width)/2;
-    let t=((height-2)/num);
+    let num=(width-3)/2;
+    let t=(height/num)-1;
     let sher=(height-(num*t))-2;
     
     if((width > (2*height))||((width%2)===0)){
       alert("The triangle cannot be printed")
     }
     else{
-      if(width>3){
-
       rows.push("*");
-      for(let x=0;x<sher;x++){
-        rows.push("*".repeat(glo));
-      }
-    for (let i = 0; i < num; i++) {
-      for(let j = 0;j <t; j++){
-
+      if(width>5){
+        for(let x=0;x<sher;x++){
           rows.push("*".repeat(glo));
-      } 
-      glo= glo+2;
-      }
-       }
-       else{
-           rows.push("*");
-           for(let x=2; x<height; x++){
-            rows.push("*".repeat(width));
-           }
-
-       }
+        }
+      for (let i = 0; i < num; i++) {
+        for(let j = 0;j <t; j++){
   
+            rows.push("*".repeat(glo));
+        } 
+        glo= glo+2;
+      }
+
+      }
+      else{
+        let h=height-2;
+        let g="*";
+        if(width===3){g="***"}
+       if(width<5) {for(let i=0;i<h; i++){
+        rows.push(g);
+       }}
+       else{
+        for(let i=0;i<(h%2); i++){
+          rows.push("***")
+        }
+        for(let i=0;i<(h/2); i++){
+          rows.push("***")
+        }
+        for(let i=0;i<(h/2); i++){
+          rows.push("*****")
+        }
+       }
+      }
+     
     rows.push("*".repeat(width));
+    
     if(action===1){
       console.log("Perimeter: ", perimeter);
     }
