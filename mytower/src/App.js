@@ -15,9 +15,7 @@ function App() {
     const perimeter = height + width + Math.sqrt(height * 2 + width * 2);
     const rows = [];
     let glo=3;
-    let num=(width-3)/2;
-    let t=(height/num)-1;
-    let sher=(height-(num*t))-2;
+    
     
     if((width > (2*height))||((width%2)===0)){
       alert("The triangle cannot be printed")
@@ -25,6 +23,9 @@ function App() {
     else{
       rows.push("*");
       if(width>5){
+        let num=(width-3)/2;
+    let t=(height/num)-1;
+    let sher=(height-(num*t))-2;
         for(let x=0;x<sher;x++){
           rows.push("*".repeat(glo));
         }
